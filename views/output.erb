@@ -38,7 +38,7 @@
       <th>Name</th>
       <th>Description</th>
      </tr>
-     <%(0..@publishers.length-1 ).each do |m| %>
+     <%(0..@publishers[@shop[i]["id"]].length-1 ).each do |m| %>
      <tr>
        <td><%=  @publishers[@shop[i]["id"]][m]["id"] %></td>
        <td><%=  @publishers[@shop[i]["id"]][m]["name"] %></td>
@@ -47,6 +47,5 @@
      <% end %>
   </table>
 <% end %>
-
 
 <a href="/" class="btn btn-primary btn-lg btn-block" role="button">Home</a>
