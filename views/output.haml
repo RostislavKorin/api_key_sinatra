@@ -1,0 +1,45 @@
+%table.table.table-striped
+  %caption
+    %h1.text-center User
+  %tr
+    %th Name
+    %th Account name
+    %th Login
+    %th Email
+  %tr
+    %td
+      = @user['first_name']
+      = @user['last_name']
+    %td= @user['account_name']
+    %td= @user['login']
+    %td= @user['email']
+- (0..@shop.length-1 ).each do |i|
+  %table.table.table-striped
+    %caption
+      %h1.text-center
+        Shop #{i+1}
+    %tr
+      %th Name
+      %th Shop id
+      %th Url
+      %th Created at
+    %tr
+      %td= @shop[i]["name"]
+      %td= @shop[i]["id"]
+      %td
+        %a{:href => @shop[i]["url"]}
+          = @shop[i]["url"]
+      %td= @shop[i]['created_at']
+  %table.table.table-striped
+    %caption
+      %h1.text-center Publishers
+    %tr
+      %th Id
+      %th Name
+      %th Description
+    - (0..@publishers[@shop[i]["id"]].length-1 ).each do |m|
+      %tr
+        %td= @publishers[@shop[i]["id"]][m]["id"]
+        %td= @publishers[@shop[i]["id"]][m]["name"]
+        %td= @publishers[@shop[i]["id"]][m]["description"]
+%a.btn.btn-primary.btn-lg.btn-block{:href => "/", :role => "button"} Home

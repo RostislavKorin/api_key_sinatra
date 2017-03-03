@@ -2,10 +2,11 @@ require 'rubygems'
 require 'sinatra'
 require 'rest-client'
 require 'json'
+require 'haml'
 
 
   get "/" do
-    erb :home
+    haml :home
   end
 
   post '/get_json' do
@@ -20,7 +21,7 @@ require 'json'
      publishers_json = RestClient.get("https://demo.shop2market.com/api/v1/shops/#{shop["id"]}/publishers.json", {"X-Api-Key" => params[:api_key]})
      @publishers[shop["id"]] = JSON.parse(publishers_json)
     end
-     erb :output
+     haml :output
   end
 
   post '/post_json' do
@@ -35,9 +36,9 @@ require 'json'
                                             "picture_link": "#{params[:picturelink]}"}].to_json, headers) { |response, request, result|
                                                                                                             case response.code
                                                                                                             when 200, 201, 202, 203, 204
-                                                                                                              erb :created_products
+                                                                                                              haml :created_products
                                                                                                             else
-                                                                                                              erb :wasnt_created
+                                                                                                              haml :wasnt_created
                                                                                                             end
                                                                                                           }
 
